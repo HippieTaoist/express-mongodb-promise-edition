@@ -53,16 +53,42 @@ router.post('/create-recipe', function (req, res) {
 
         )
 })
-router.put('/update-recipe-by-id/:/id', function (req, res) {
-    res.json({
-        message: "Successful Piping to update home page"
-    })
+
+
+router.put('/update-recipe-by-id/:id', function (req, res) {
+    updateRecipeById(req.params.id, req.body)
+        .then((payload) => {
+            res.json({
+                message: "Success",
+                payload
+            })
+        })
+        .catch((error) => {
+            res
+                .status(500)
+                .json({
+                    message: "Failure",
+                    error: error.message
+                })
+        })
 })
 
-router.delete('/delete-recipe-by-id/:/id', function (req, res) {
-    res.json({
-        message: "Successful Piping to delete home page"
-    })
+router.delete('/delete-recipe-by-id/:id', function (req, res) {
+    deleteRecipeById(req.params.id, req.body)
+        .then((payload) => {
+            res.json({
+                message: "Success",
+                payload
+            })
+        })
+        .catch((error) => {
+            res
+                .status(500)
+                .json({
+                    message: "Failure",
+                    error: error.message,
+                })
+        })
 })
 
 module.exports = router;

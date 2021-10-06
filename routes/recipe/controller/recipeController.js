@@ -38,6 +38,38 @@ function createRecipe(body) {
     })
 }
 
+function updateRecipeById(id, body) {
+
+    return new Promise((resolve, reject) => {
+
+        Recipe.findByIdAndUpdate(
+                id,
+                body, {
+                    new: true
+                }, )
+            .then(payload => {
+                resolve(payload)
+            })
+            .catch(err => {
+                reject(err)
+            })
+    })
+
+}
+
+function deleteRecipeById(id) {
+    return new Promise((resolve, reject) => {
+
+        Recipe.findByIdAndDelete(id)
+            .then(payload => {
+                resolve(payload)
+            })
+            .catch(err => {
+                reject(err)
+            })
+    })
+}
+
 module.exports = {
     getAllRecipes,
     createRecipe,
