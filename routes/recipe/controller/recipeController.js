@@ -41,6 +41,6 @@ function createRecipe(body) {
 module.exports = {
     getAllRecipes,
     createRecipe,
-    //    deleteRecipeById,
-    //     updateRecipeById,
+    deleteRecipeById,
+    updateRecipeById,
 }
